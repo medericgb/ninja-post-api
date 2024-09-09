@@ -12,6 +12,7 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UpdateUserSettingsDto } from './dto/update-user-settings.dto';
 
 @Controller('users')
 export class UsersController {
@@ -42,5 +43,10 @@ export class UsersController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(id);
+  }
+
+  @Put(':id/settings')
+  updateUserSettings(@Param('id') id: string, @Body() updateUserSettingsDto: UpdateUserSettingsDto) {
+    return this.usersService.updateUserSettings(id, updateUserSettingsDto);
   }
 }
